@@ -28,7 +28,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			// Handle only on text message
 			case *linebot.TextMessage:
 				// Directly to ChatGPT
-				if strings.Contains(message.Text, ":gpt") {
+				if strings.Contains(message.Text, "小秘") {
 					// New feature.
 					if IsRedemptionEnabled() {
 						if stickerRedeemable {
@@ -41,7 +41,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 						// Original one
 						handleGPT(GPT_Complete, event, message.Text)
 					}
-				} else if strings.Contains(message.Text, ":draw") {
+				} else if strings.Contains(message.Text, "小秘畫圖") {
 					// New feature.
 					if IsRedemptionEnabled() {
 						if stickerRedeemable {
@@ -54,9 +54,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 						// Original one
 						handleGPT(GPT_Draw, event, message.Text)
 					}
-				} else if strings.EqualFold(message.Text, ":list_all") && isGroupEvent(event) {
+				} else if strings.EqualFold(message.Text, "小秘列表") && isGroupEvent(event) {
 					handleListAll(event)
-				} else if strings.EqualFold(message.Text, ":sum_all") && isGroupEvent(event) {
+				} else if strings.EqualFold(message.Text, "小秘總結") && isGroupEvent(event) {
 					handleSumAll(event)
 				} else if isGroupEvent(event) {
 					// 如果聊天機器人在群組中，開始儲存訊息。
